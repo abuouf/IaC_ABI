@@ -34,12 +34,15 @@ resource "aws_instance" "backend" {
     Name = "backend"
   }
   provisioner "remote-exec" {
+      [
       "mkdir /scripts",
-      "wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_backend.sh -O /scripts/deploy_backend.sh"
+      "wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_backend.sh -O /scripts/deploy_backend.sh",
       "chmod +x /scripts/deploy_backend.sh", 
-      "echo 'Hello, World!' > /scripts/deploy_backend.sh"  
-      "wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/deploy_backend.sh"
-      "chmod +x /scripts/monitor-cpu.sh",  
+      "./scripts/deploy_backend.sh",
+      "wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/monitor-cpu.sh",
+      "chmod +x /scripts/monitor-cpu.sh",
+      "./scripts/monitor-cpu.sh"
+      ]
   }
 }
 
@@ -55,8 +58,13 @@ resource "aws_instance" "frontend" {
   }
   provisioner "remote-exec" {
     inline = [
-      "echo 'Hello, World!' > /path/to/your/file.txt",
-      # Add other commands as needed
+      "mkdir /scripts",
+      "wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_frontend.sh -O /scripts/deploy_frontend.sh",
+      "chmod +x /scripts/deploy_frontend.sh", 
+      "./scripts/deploy_frontend.sh",
+      "wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/monitor-cpu.sh",
+      "chmod +x /scripts/monitor-cpu.sh",
+      "./scripts/monitor-cpu.sh"
     ]
   }
 }
