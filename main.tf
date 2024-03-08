@@ -1,4 +1,14 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.40.0"
+    }
+  }
+}
+
 provider "aws" {
+  # Configuration options
   region = "your_region"
 }
 
@@ -23,6 +33,14 @@ resource "aws_instance" "backend" {
   tags = {
     Name = "backend"
   }
+  provisioner "remote-exec" {
+      "mkdir /scripts",
+      "wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_backend.sh -O /scripts/deploy_backend.sh"
+      "chmod +x /scripts/deploy_backend.sh", 
+      "echo 'Hello, World!' > /scripts/deploy_backend.sh"  
+      "wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/deploy_backend.sh"
+      "chmod +x /scripts/monitor-cpu.sh",  
+  }
 }
 
 resource "aws_instance" "frontend" {
@@ -34,6 +52,12 @@ resource "aws_instance" "frontend" {
 
   tags = {
     Name = "frontend"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Hello, World!' > /path/to/your/file.txt",
+      # Add other commands as needed
+    ]
   }
 }
 
