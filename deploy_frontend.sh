@@ -1,1 +1,1 @@
-
+echo "Start deploy frontend"
