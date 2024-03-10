@@ -9,7 +9,7 @@ terraform {
 
 provider "aws" {
   # Configuration options
-  region = "your_region"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "example" {
@@ -24,8 +24,8 @@ resource "aws_subnet" "example" {
 }
 
 resource "aws_instance" "backend" {
-  ami                    = "ami-xxxxxxxxxxxxxxxxx" // Replace with the appropriate AMI ID for Ubuntu 22.04
-  instance_type          = "t3.micro"
+  ami                    = "ami-07d9b9ddc6cd8dd30" // Replace with the appropriate AMI ID for Ubuntu 22.04
+  instance_type          = "t2.micro"
   subnet_id              = aws_subnet.example.id
   associate_public_ip_address = true
   key_name               = "your_key_name" // Replace with your key pair name
@@ -47,8 +47,8 @@ resource "aws_instance" "backend" {
 }
 
 resource "aws_instance" "frontend" {
-  ami                    = "ami-xxxxxxxxxxxxxxxxx" // Replace with the appropriate AMI ID for Ubuntu 22.04
-  instance_type          = "t3.micro"
+  ami                    = "ami-07d9b9ddc6cd8dd30" // Replace with the appropriate AMI ID for Ubuntu 22.04
+  instance_type          = "t2.micro"
   subnet_id              = aws_subnet.example.id
   associate_public_ip_address = true
   key_name               = "your_key_name" // Replace with your key pair name
