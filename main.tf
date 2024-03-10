@@ -47,8 +47,10 @@ resource "aws_instance" "frontend" {
       host     = self.public_ip
     }
     inline = [
-      "sudo apt-get install nodejs",
-      "sudo apt-get install npm",      
+      "sudo apt update",      
+      "sudo apt-get install -y nodejs",
+      "sudo apt-get install -y npm", 
+      "sudo npm install pm2 -g",     
       "sudo mkdir /scripts",
       "sudo wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_frontend.sh -O /scripts/deploy_frontend.sh",
       "sudo chmod +x /scripts/deploy_frontend.sh", 
@@ -81,10 +83,8 @@ resource "aws_instance" "backend" {
       host     = self.public_ip
     }
     inline = [
-      "sudo apt install apache2",
-      "sudo apt-get install nodejs",
-      "sudo apt-get install npm", 
-      "sudo ufw allow in 'Apache'", 
+      "sudo apt update"
+      "sudo apt install -y apache2",
       "sudo mkdir /scripts",
       "sudo wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_backend.sh -O /scripts/deploy_backend.sh",
       "sudo chmod +x /scripts/deploy_backend.sh", 
@@ -178,6 +178,13 @@ resource "aws_security_group" "web_sg" {
   ingress {
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 3001
+    to_port     = 3001
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
