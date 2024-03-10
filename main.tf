@@ -83,7 +83,7 @@ resource "aws_instance" "backend" {
       host     = self.public_ip
     }
     inline = [
-      "sudo apt update"
+      "sudo apt update",
       "sudo apt install -y apache2",
       "sudo mkdir /scripts",
       "sudo wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_backend.sh -O /scripts/deploy_backend.sh",
