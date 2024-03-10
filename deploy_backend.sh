@@ -1,1 +1,1 @@
-deploy_backend.sh
+echo "start deploy_backend"
