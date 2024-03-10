@@ -54,10 +54,10 @@ resource "aws_instance" "frontend" {
       "sudo mkdir /scripts",
       "sudo wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_frontend.sh -O /scripts/deploy_frontend.sh",
       "sudo chmod +x /scripts/deploy_frontend.sh", 
-      "sudo . /scripts/deploy_frontend.sh",
+      "sudo sh /scripts/deploy_frontend.sh",
       "sudo wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/monitor-cpu.sh",
       "sudo chmod +x /scripts/monitor-cpu.sh",
-      "sudo . /scripts/monitor-cpu.sh",
+      "sudo sh /scripts/monitor-cpu.sh",
       "echo '*/10 * * * * /scripts/monitor-cpu.sh' | crontab -"
     ]
   }
@@ -88,10 +88,10 @@ resource "aws_instance" "backend" {
       "sudo mkdir /scripts",
       "sudo wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_backend.sh -O /scripts/deploy_backend.sh",
       "sudo chmod +x /scripts/deploy_backend.sh", 
-      "sudo . /scripts/deploy_backend.sh",
+      "sudo sh /scripts/deploy_backend.sh",
       "sudo wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/monitor-cpu.sh",
       "sudo chmod +x /scripts/monitor-cpu.sh",
-      "sudo . /scripts/monitor-cpu.sh",
+      "sudo sh /scripts/monitor-cpu.sh",
       "echo '*/10 * * * * /scripts/monitor-cpu.sh' | crontab -"
       ]
   }
