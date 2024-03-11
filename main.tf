@@ -53,7 +53,7 @@ resource "aws_instance" "frontend" {
       "sudo npm install pm2 -g",     
       "sudo mkdir /scripts",
       "sudo wget https://raw.githubusercontent.com/abuouf/IaC_ABI/main/deploy_frontend.sh -O /scripts/deploy_frontend.sh",
-      "sudo chmod +x /scripts/deploy_frontend.sh", 
+      "sudo chmod +x /scripts/deploy_frontend.sh",       
       "sudo sh /scripts/deploy_frontend.sh",
       "sudo wget https://github.com/abuouf/IaC_ABI/raw/main/monitor-cpu.sh -O /scripts/monitor-cpu.sh",
       "sudo chmod +x /scripts/monitor-cpu.sh",
